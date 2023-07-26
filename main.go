@@ -10,6 +10,7 @@ import (
 	"os"
 	"strings"
 
+	"github.com/fatih/color"
 	"github.com/joho/godotenv"
 )
 
@@ -30,9 +31,11 @@ func main() {
 
 	res := responseToStruct(body)
 
-	fmt.Printf("%.2f %s is equivalent to:\n", amount, fromCurrency)
+	mess := fmt.Sprintf("%.2f %s is equivalent to:\n", amount, fromCurrency)
+	color.Green(mess)
 	for currency, rate := range res.Data {
-		fmt.Printf("%.2f %s\n", rate*amount, currency)
+		mess = fmt.Sprintf("%.2f %s\n", rate*amount, currency)
+		color.Red(mess)
 	}
 
 }
